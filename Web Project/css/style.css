@@ -30,6 +30,10 @@ float: left;
 width: 50%;
 }
 
+.column-right {
+float: right;
+}
+
 .row2:after {
 content: "";
 display: table;
@@ -116,3 +120,7 @@ display: block;
 .secondRow{
 text-align: center;
 }
+
+.horizontal-line {
+    border-top: 6px solid rgb(0, 0, 0);
+  }

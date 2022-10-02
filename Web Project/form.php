@@ -1,55 +1,22 @@
 <?php
-function print_title(){
-  if(isset($_GET['id'])){
-    echo $_GET['id'];
-  } else {
-    echo "Welcome";
-  }
-}
-function print_description(){
-  if(isset($_GET['id'])){
-    echo file_get_contents("data/".$_GET['id']);
-  } else {
-    echo "Hello, PHP";
-  }
-}
-function print_list(){
-  $list = scandir('./data');
-  $i = 0;
-  while($i < count($list)){
-    if($list[$i] != '.') {
-      if($list[$i] != '..') {
-        echo "<li><a href=\"index.php?id=$list[$i]\">$list[$i]</a></li>\n";
-      }
-    }
-    $i = $i + 1;
-  }
-}
+    require_once('view/top.php');
 ?>
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>
-      <?php
-      print_title();
-      ?>
-    </title>
-  </head>
-  <body>
-    <h1><a href="index.php">WEB</a></h1>
-    <ol>
-      <?php
-      print_list();
-      ?>
-    </ol>
-    <a href="form.php">create</a>
-    <form action="form_process.php" method="post">
-      <p>
+
+    <form action="form_process.php" method="post" enctype="multipart/form-data">
+      <p>카테고리:
+        <select name="category">
+          <option value="buy">삽니다</option>
+          <option value="sell">팝니다</option>
+        </select>
+      </P>
+      <p>제목:
         <input type="text" name="title" placeholder="Title">
       </p>
-      <p>
+      <p>내용:
         <textarea name="description" placeholder="Description"></textarea>
+      </p>
+      <p>사진 업로드:
+        <input name="file" type="file">
       </p>
       <p>
         <input type="submit">
