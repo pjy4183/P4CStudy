@@ -45,7 +45,42 @@
         }
     ?>
     <h4 style="text-align: left;"><?=$result['description']?></h4>
+
+    
 </div>
+
+<!-- Comment -->
+<div>
+    <?php
+    if(isset($_SESSION['userid'])){?>
+    <form action="comment.php" method="POST">
+		<h3>Comments: </h3>
+		<p><textarea rows="5" cols="50" name="comment"></textarea></p>
+		<input type="submit" value="댓글 추가..." style="padding-right: 15px;padding-left: 15px;">
+        <input type='hidden' name='boardid' value='<?php echo "$id";?>'/> 
+	</form><?php
+    }
+    ?>
+    <hr>
+	<h3>Comment list:</h3>
+	<?php 
+	$query = "SELECT * FROM tb_comment WHERE boardid=$id order by id desc";
+	$result_comment = mysqli_query($conn,$query);
+	while($data_comment = mysqli_fetch_array($result_comment)) {
+		?>
+
+		<div style="border: 1px solid black;">
+            <h4>ID : <?=$data_comment['username']?></h6>
+            <div style="float:right;"><?=$data_comment['date']?></div>
+
+			<h3><?=$data_comment['comment']?></h3>
+		</div>
+		<?php
+
+	}
+
+	?>
+    </div>
 
 <div class="column-right" style="float:right;">
     <div class="column" style="margin-right: 15px; margin-left: 8px; ">
@@ -55,17 +90,19 @@
 
             <?php
 
+                if(isset($_SESSION['userid'])){
+                    $userid = $_SESSION['userid'];
+                    $sqlquery = "SELECT username FROM tb_user WHERE userid='$userid'";
+                    $data2 = mysqli_query($conn, $sqlquery);
+                    $result2 = mysqli_fetch_array($data2);
+                    $user = $result2[0];
 
-                $userid = $_SESSION['userid'];
-                $sqlquery = "SELECT username FROM tb_user WHERE userid='$userid'";
-                $data2 = mysqli_query($conn, $sqlquery);
-                $result2 = mysqli_fetch_array($data2);
-                $user = $result2[0];
 
-
-                if($user==$result['user']){
-                    ?><h5><a href="delete_process.php?id=<?=$id?>">글 삭제 하기</a></h5><?php
+                    if($user==$result['user']){
+                        ?><h5><a href="delete_process.php?id=<?=$id?>">글 삭제 하기</a></h5><?php
+                    }
                 }
+                
             ?>
 
     </div>

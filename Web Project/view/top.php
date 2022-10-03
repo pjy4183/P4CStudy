@@ -20,8 +20,8 @@
                 중고 쇼핑몰에서 사고 팔기
             </div> -->
         </a>
-        <a href="#Buy">BUY</a>
-        <a href="#Sell">SELL</a>
+        <!-- <a href="#Buy">BUY</a>
+        <a href="#Sell">SELL</a> -->
 
 
         <div class="topnav-right">

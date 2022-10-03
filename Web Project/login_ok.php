@@ -12,13 +12,21 @@
     
     $data = mysqli_query($conn, $sql);
     $result = mysqli_fetch_array($data);
+
     session_start();
     
     
 
     if($result){
+        if($result['verified']!=1){
+            echo "<script>";
+            echo "alert('Login Failed. 이메일 인증을 해주시기 바랍니다.');";
+            echo "window.location = 'login.php';";
+            echo "</script>";
+        }else{
         $_SESSION['userid'] = $userid;
         header('Location: index.php');
+        }
     }else{
         echo "<script>";
         echo "alert('Login Failed. 가입된 아이디가 아니거나 비밀번호가 틀립니다.');";
