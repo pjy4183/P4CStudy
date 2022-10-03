@@ -1,8 +1,10 @@
 <?php
     require_once('view/top.php');
+
+    $category = $_GET['category'];
+    $standard = $_GET['standard'];
+    $search = $_GET['search'];
 ?>
-
-
 
     <!-- search row -->
     <div class="secondRow">
@@ -33,9 +35,17 @@
 			<th>날짜</th>
 			<th>조회수</th>
 		</tr>
+        <h3>Search Results: </h3>
 		<?php
-			include "sql_connection.php";
-			$sql = "SELECT * FROM tb_board order by id desc";
+            include "sql_connection.php";
+
+            if(($category=='all')){
+                $sql = "SELECT * FROM tb_board WHERE $standard like '%$search%' ORDER BY id DESC";
+            }else{
+                $sql = "SELECT * FROM tb_board WHERE category='$category' and  $standard like '%$search%' ORDER BY id DESC";
+            }
+
+
 			$data = mysqli_query($conn,$sql);
 			
 
@@ -73,11 +83,5 @@
 
         <?php }?>
 
-
-
-
-
-
-
-  </body>
+</body>
 </html>
