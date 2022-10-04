@@ -5,7 +5,7 @@
 
 
     <!-- search row -->
-    <div class="secondRow">
+    <div class="secondRow" >
         <p>
             <form action="./search.php" method="GET">
                 <select name="category">
@@ -23,40 +23,6 @@
         </p>
     </div>
 
-
-    <!-- Board  -->
-    <table style="text-align: center;">
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>날짜</th>
-			<th>조회수</th>
-		</tr>
-		<?php
-			include "sql_connection.php";
-			$sql = "SELECT * FROM tb_board order by id desc";
-			$data = mysqli_query($conn,$sql);
-			
-
-			while($result = mysqli_fetch_array($data)) {
-		?>
-				<tr>
-					<td> <?= $result['id']?> </td>
-			   		<td><a href="detail.php?id=<?=$result['id']?>"><?= $result['title']?></a></td>
-			   		<td><?=$result['user']?></td>
-			   		<td><?= $result['date']?></td>
-					<td><?= $result['view']?></td>
-			   	</tr>
-				
-			   <?php
-			}
-
-		?>
-
-
-	</table>
-
     <!-- 글쓰기 -->
 
     <?php
@@ -72,6 +38,41 @@
             <a href="needLogin.php" style="float:right; ">글쓰기</a>
 
         <?php }?>
+
+    <!-- Board  -->
+    <table id="board" style="text-align: center;">
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>작성자</th>
+			<th>날짜</th>
+			<th>조회수</th>
+		</tr>
+		<?php
+			include "sql_connection.php";
+			$sql = "SELECT * FROM tb_board order by id desc";
+			$data = mysqli_query($conn,$sql);
+			
+
+			while($result = mysqli_fetch_array($data)) {
+		?>
+				<tr onclick="window.location='detail.php?id=<?=$result['id']?>';">
+					<td> <?= $result['id']?> </td>
+			   		<td><a href="detail.php?id=<?=$result['id']?>"><?= $result['title']?></a></td>
+			   		<td><?=$result['user']?></td>
+			   		<td><?= $result['date']?></td>
+					<td><?= $result['view']?></td>
+			   	</tr>
+				
+			   <?php
+			}
+
+		?>
+
+
+	</table>
+
+    
 
 
 

@@ -8,7 +8,23 @@
     $data = mysqli_query($conn, $sql);
     $result = mysqli_fetch_array($data);
 ?>
+<?php
+    $id = $_GET['id'];
+    if (!isset($_COOKIE['board_'.$id])){
 
+        include 'sql_connection.php';
+        $sql5 = "SELECT * FROM tb_board WHERE id='$id'";
+        $data3 = mysqli_query($conn,$sql5);
+        $result4 = mysqli_fetch_array($data3);
+
+        $view = $result4['view'] + 1;
+        $sqlquery2 = "UPDATE tb_board set view='$view' WHERE id = '$id'";
+
+
+        mysqli_query($conn,$sqlquery2);
+        $cookie_time = setcookie('board_'.$id, $id, time() + 60*60);
+    }
+?>
 <div style="text-align: center;">
     <div class="row">
             <h2><?=$result['title']?></h2>
@@ -33,12 +49,16 @@
             
     </div>
     <hr>
-
+    <?php
+    if(isset($_SESSION['userid'])){?>
     <div style="text-align: right;">
         <form action="recommendation.php?id=<?=$id?>" method="post">
             <input type="submit" value="추천">
         </form>
     </div>
+    <?php
+    }
+    ?>
     <?php
         if($result['file']){
             ?><img src="./image/<?=$result['file']?>" alt="Italian Trulli" width="800" height="auto"><?php
@@ -66,19 +86,17 @@
 	<?php 
 	$query = "SELECT * FROM tb_comment WHERE boardid=$id order by id desc";
 	$result_comment = mysqli_query($conn,$query);
-	while($data_comment = mysqli_fetch_array($result_comment)) {
-		?>
-
+	while($data_comment = mysqli_fetch_array($result_comment)) {?>
 		<div style="border: 1px solid black;">
             <h4>ID : <?=$data_comment['username']?></h6>
             <div style="float:right;"><?=$data_comment['date']?></div>
 
 			<h3><?=$data_comment['comment']?></h3>
+            
 		</div>
-		<?php
-
+        <br>
+	<?php
 	}
-
 	?>
     </div>
 
@@ -108,23 +126,7 @@
     </div>
 </div>
 
-<?php
-    $id = $_GET['id'];
-    if (!isset($_COOKIE['board_'.$id])){
 
-        include 'sql_connection.php';
-        $sql5 = "SELECT * FROM tb_board WHERE id='$id'";
-        $data3 = mysqli_query($conn,$sql5);
-        $result4 = mysqli_fetch_array($data3);
-
-        $view = $result4['view'] + 1;
-        $sqlquery2 = "UPDATE tb_board set view='$view' WHERE id = '$id'";
-
-
-        mysqli_query($conn,$sqlquery2);
-        $cookie_time = setcookie('board_'.$id, $id, time() + 60*60);
-    }
-?>
 
 
 

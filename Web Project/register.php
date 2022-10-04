@@ -6,7 +6,10 @@
         <div>
             <h1>Regist Form</h1>
             <form action="regist_ok.php" method="post" name="regiform" id="regist_form" class="form" onsubmit="return sendit()">
-                <p><input type="text" name="userid" id="userid" placeholder="ID"><input type="button" id="checkIdBtn" value="check" onclick="checkUserid()"></p>
+                <p><input type="text" name="userid" id="userid" placeholder="ID"><input type="button" id="checkIdBtn" value="check" onclick="checkUserid()" style="
+    margin-left: 10px;
+    margin-right: 10px;
+"></p>
                 <p id="result">&nbsp;</p>
                 <p><input type="password" name="userpw" id="userpw" placeholder="Password"></p>
                 <p><input type="password" name="userpw_ch" id="userpw_ch" placeholder="Password Check"></p>

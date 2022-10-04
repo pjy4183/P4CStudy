@@ -27,7 +27,7 @@
 
 
     <!-- Board  -->
-    <table style="text-align: center;">
+    <table id="board" style="text-align: center;">
 		<tr>
 			<th>번호</th>
 			<th>제목</th>

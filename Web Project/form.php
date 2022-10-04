@@ -13,7 +13,7 @@
         <input type="text" name="title" placeholder="Title">
       </p>
       <p>내용:
-        <textarea name="description" placeholder="Description"></textarea>
+        <textarea rows="5" cols="100" name="description" placeholder="Description"></textarea>
       </p>
       <p>사진 업로드:
         <input name="file" type="file">
