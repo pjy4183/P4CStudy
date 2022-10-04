@@ -14,8 +14,14 @@ W1~3: [개발프로젝트]HTML, PHP, MySQL, js, 파이썬 공부하여 웹사이
 -> UI 조금은 신경 써야 함
 
 ## 결과물
+###DEPLOY 주소
 ```
 https://pre-owned-shopping.000webhostapp.com/
+```
+###테스트 아이디
+```
+ID: admin
+PASS: admin
 ```
 
 #빡공팟 #TeamH4C, #P4C
