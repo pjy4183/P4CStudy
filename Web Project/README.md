@@ -23,5 +23,8 @@ https://pre-owned-shopping.000webhostapp.com/
 ID: admin
 PASS: admin
 ```
-
+주의 상황
+```
+가입을 한 후, 이메일 인증을 시도 하면 이메일 인증 링크가 발송 되는데, SPAM 메일 함에서 확인을 해야 한다. (도메인이 불확실하거나 링크가 포함되어 그런듯 하다)
+```
 #빡공팟 #TeamH4C, #P4C
