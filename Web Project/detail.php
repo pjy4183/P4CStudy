@@ -124,8 +124,6 @@
         mysqli_query($conn,$sqlquery2);
         $cookie_time = setcookie('board_'.$id, $id, time() + 60*60);
     }
-    
-
 ?>
 
 
