@@ -1,3 +1,9 @@
+<?php
+    include 'sql_connection.php';
+    session_start();
+
+    
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -104,9 +110,6 @@ input[type=submit]:hover {
         <div class="topnav-right">
             <div class="dropdown">
                 <?php
-                    include 'sql_connection.php';
-                    session_start();
-                    
                     if(isset($_SESSION['userid'])){
                         $user = $_SESSION['userid'];
                         $sql = "SELECT username FROM tb_user WHERE userid='$user'";

@@ -1,14 +1,5 @@
 <?php
-    require_once('view/top.php');
 
-    
-
-    $id = $_GET['id'];
-    $sql = "SELECT * FROM tb_board WHERE id=$id";
-    $data = mysqli_query($conn, $sql);
-    $result = mysqli_fetch_array($data);
-?>
-<?php
     $id = $_GET['id'];
     if (!isset($_COOKIE['board_'.$id])){
 
@@ -24,6 +15,16 @@
         mysqli_query($conn,$sqlquery2);
         $cookie_time = setcookie('board_'.$id, $id, time() + 60*60);
     }
+    require_once('view/top.php');
+
+    
+
+    $id = $_GET['id'];
+    $sql = "SELECT * FROM tb_board WHERE id=$id";
+    $data = mysqli_query($conn, $sql);
+    $result = mysqli_fetch_array($data);
+
+    
 ?>
 <div style="text-align: center;">
     <div class="row">
